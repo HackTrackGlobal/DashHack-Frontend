@@ -1,15 +1,12 @@
 {
   "name": "trackboard-frontend",
   "description": "The Hackthon Dashboard System",
-
   "main": "server.js",
   "private": true,
-
   "license": "ISC",
   "authors": [
     "Yarden Sod-Moriah"
   ],
-
   "ignore": [
     "**/.*",
     "node_modules",
@@ -18,9 +15,9 @@
     "test",
     "tests"
   ],
-
   "dependencies": {
     "angular": "^1.5.0",
-    "angular-route": "^1.5.0"
+    "angular-route": "^1.5.0",
+    "angular-material": "^1.0.6"
   }
 }
