@@ -1,23 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="trackboardApp">
+<html lang="en" ng-app="trackboardApp" ng-controller="mainController as main">
     <head>
         <meta charset="UTF-8">
-        <title>Contacts</title>
+        <title>Trackboard</title>
 
         <!-- For angular routing -->
         <base href="/">
 
         <!-- CSS -->
+        <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="lib/angular-material/angular-material.layouts.min.css">
 
     </head>
     <body>
 
+        <!-- Wrapper -->
+        <main layout="column" style="height:100%">
 
-        <!-- JavaScript -->
+            <section layout="row" flex>
+
+                <!-- Navbar -->
+                <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop md-whiteframe="4">
+
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Trackboard</h1>
+                    </md-toolbar>
+
+                    <md-contentg>
+
+                        <!-- Items -->
+                        <ul class="side-menu">
+                            <li ng-repeat="section in menu.sections" class="parent-list-item"
+                                ng-class="{ 'parentActive' : main.isSectionSelected(section) }">
+
+                                <h2 class="menu-heading" ng-if="section.type === 'heading'"
+                                    id="heading_{{ section.name | nospace }}">
+                                    {{section}}
+                                </h2>
+
+                                <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+                            </li>
+                        </ul>
+                    </md-content>
+                </md-sidenav>
+
+                <!-- Main Content -->
+                <md-content flex>
+                    <div layout="column" layout-fill>
+
+                        <!-- Toolbar -->
+                        <md-toolbar class="md-accent">
+                            <div class="md-toolbar-tools">
+                                <h2>
+                                    <span>Dashboard</span>
+                                </h2>
+                            </div>
+                        </md-toolbar>
+                    </div>
+                </md-content>
+
+            </section>
+        </main>
+
+        <!-- Libs -->
         <script src="lib/angular/angular.min.js"></script>
         <script src="lib/angular-route/angular-route.min.js"></script>
+        <script src="lib/angular-aria/angular-aria.min.js"></script>
+        <script src="lib/angular-animate/angular-animate.js"></script>
+        <script src="lib/angular-material/angular-material.min.js"></script>
 
-        <!-- Angular Stuff -->
+        <!-- Services -->
+        <script src="src/services/apiRoutesService.js"></script>
+        <script src="src/services/authService.js"></script>
+
+        <!-- Directives -->
+        <script src="src/directives/menuToggleDirective.js"></script>
+
+        <!-- Controllers -->
+        <script src="src/controllers/mainCtrl.js"></script>
+
+        <!-- Main Stuff -->
+        <script src="src/routes.js"></script>
         <script src="src/app.js"></script>
     </body>
 </html>
